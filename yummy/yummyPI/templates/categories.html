@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2> Categories </h2>
+{% if form.errors %}
+<p style="color: red"> Please add category name and description </p>
+{% endif %}
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel panel-heading"> Create a Category</div>
+        <div class="panel panel-body">
+            <form method="POST" action="/yummyPI/Category/">
+                {% csrf_token %} {{form }}
+            
+                <button type="submit" class="btn btn-primary"> create category </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

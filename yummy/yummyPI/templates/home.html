@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<h2> Welcome , {{ user.username }}  </h2>
+
+<p> Add a category <a href="/yummyPI/Category"> Here </a> </p>
+
+<p> <a href="/yummyPI/Logout"> Logout</a> </p>
+{% else %}
+<p> <a href="/yummyPI/Login"> Login </a> </p>
+<p> <a href="/yummyPI//Register"> Signup </a> </p>
+{% endif %}
+
+
+{% endblock %}

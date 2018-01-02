@@ -1,0 +1,21 @@
+<head>
+    {% load bootstrap3 %}
+     {% bootstrap_css %} 
+         {% bootstrap_javascript %}
+         {% bootstrap_messages %}
+    <meta charset="UTF-8">
+    <title>Yummy Recipes</title>
+</head>
+<body>
+<header>
+    <h1>
+        Yummy Recipes with Django
+    </h1>
+
+    <hr>
+</header>
+<main>
+    {% block content%}
+    {% endblock %}
+</main>
+</body>
