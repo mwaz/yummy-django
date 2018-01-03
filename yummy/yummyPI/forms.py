@@ -1,7 +1,7 @@
 from django import  forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
-from .models import Categories
+from .models import Categories, Recipes
 
 
 class UserRegistrationForm(forms.Form):
@@ -67,3 +67,40 @@ class CategoryRegistrationForm(forms.Form):
     class Meta:
         model = Categories
         fields = ('category_name', 'category_description')
+
+class RecipeRegistrationForm(forms.Form):
+    """Method to register a recipe
+    """
+    recipe_name = forms.CharField(
+        widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'recipe name'
+        }),
+        required=True,
+        label='Recipe Name',
+        max_length=256)
+
+    recipe_methods = forms.CharField(
+         widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'recipe methods'
+        }),
+        required=True,
+        label='Recipe Methods',
+        max_length=256)
+
+    recipe_ingredients = forms.CharField(
+         widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'recipe ingredients'
+        }),
+        required=True,
+        label='Recipe Ingredients',
+        max_length=256)
+
+    class Meta:
+        model = Recipes
+        fields = ('recipe_name', 'recipe_methods', 'recipe_ingredients')
