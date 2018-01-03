@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="containter">
+    <div class="panel panel-primary">
+        <div class "panel-header"> Recipes
+        </div>
+        <div class="panel-body">
+        <form method="POST" action="/yummyPI/Recipe/">
+            {% csrf_token %} {{form }}
+        
+            <button type="submit" class="btn btn-primary"> create Recipe </button>
+        </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
 from django import forms
-from .models import Categories
-from .forms import UserRegistrationForm, CategoryRegistrationForm
+from .models import Categories, Recipes
+from .forms import UserRegistrationForm, CategoryRegistrationForm, RecipeRegistrationForm
 
 
 def home(request):
@@ -62,6 +62,25 @@ def view_created_categories(request):
     category_object = Categories.objects.all()
     return render(request, 'home.html', {'category_object': category_object})
 
+def create_recipe(request):
+    """Method to create a recipe from a category
+    """
+    form = RecipeRegistrationForm(request.POST)
+    if form.is_valid():
+        recipe_obj = form.cleaned_data
+        recipe_name = recipe_obj['recipe_name']
+        recipe_methods = recipe_obj['recipe_methods']
+        recipe_ingredients = recipe_obj['recipe_ingredients']
+    
+        existing_recipe = Recipes.objects.filter(recipe_name=recipe_name).exists()
+        if not existing_recipe:
+            Recipes.objects.create(recipe_name=recipe_name, recipe_methods=recipe_methods, recipe_ingredients=recipe_ingredients)
+            return HttpResponseRedirect('/yummyPI/')
+        else:
+            raise forms.ValidationError('I am sorry looks like the recipe name exists')
+    else:
+        form = RecipeRegistrationForm()
+    return render(request, 'recipes.html', {'form': form})
 
 
 
