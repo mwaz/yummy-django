@@ -1,3 +1,6 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}" />
 <head>
     {% load bootstrap3 %}
      {% bootstrap_css %} 
@@ -8,9 +11,28 @@
 </head>
 <body>
 <header>
-    <h1>
-        Yummy Recipes with Django
-    </h1>
+    <ul class="topnav">
+        <li>
+            <a class="active" href="/yummyPI/">Categories</a>
+        </li>
+        <li>
+            <a href="#/yummyPI/Recipes">Recipes</a>
+        </li>
+        <li>
+            <a href="#/yummyPI/Password_RESET">Password Reset</a>
+        </li>
+        <li class="right">
+            <a href="/yummyPI/Logout">Logout</a>
+        </li>
+
+        <li class="right">
+             {% if user.is_authenticated %}
+            <a href="#about">Welcome , {{ user.username }} </a>
+            {% endif %}
+        </li>
+    </ul>
+
+
 
     <hr>
 </header>

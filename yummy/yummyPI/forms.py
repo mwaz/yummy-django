@@ -5,11 +5,20 @@ from .models import Categories
 
 
 class UserRegistrationForm(forms.Form):
-    username = forms.CharField(
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'Username'
+        }),
         required=True,
         label='Username',
         max_length=32)
     email = forms.EmailField(
+        widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'Email'
+        }),
         required=True,
         label='Email',
         max_length=32)
@@ -17,8 +26,14 @@ class UserRegistrationForm(forms.Form):
         required=True,
         label='Password',
         max_length=32,
-        widget=forms.PasswordInput())
+        widget=forms.PasswordInput(attrs = { 'class':'form-control'} ))
+
     secret_word = forms.CharField(
+        widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'Secret Word'
+        }),
         required=True,
         label='Secret_word',
         max_length=32)
@@ -30,12 +45,23 @@ class UserRegistrationForm(forms.Form):
 
 class CategoryRegistrationForm(forms.Form):
     category_name = forms.CharField(
+        widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'category name'
+        }),
         required=True,
-        label='category Name',
+        label='Category Name',
         max_length=256)
+
     category_description = forms.CharField(
+         widget=forms.TextInput(
+        attrs={
+        'class':'form-control',
+        'placeholder':'Category description'
+        }),
         required=True,
-        label='category_description',
+        label='Category Description',
         max_length=256)
 
     class Meta:

@@ -1,11 +1,11 @@
 from django.conf.urls import url
-from . views import home, create_category
+from . views import home, create_category, view_created_categories
 from django.contrib.auth import views as auth_views
 from . import views
 
 app_name = 'yummy_recipes'
 urlpatterns = [
-    url(r'^$', home, name='home'),
+    url(r'^$', view_created_categories, name='home'),
     url(r'^Register/$', views.register),
     url(r'^Category/$', create_category,   name='category'),
     url(r'^Login/$', auth_views.login,  {'template_name': 'login.html'}, name='login'),

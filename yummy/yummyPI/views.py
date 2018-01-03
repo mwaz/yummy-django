@@ -55,3 +55,14 @@ def create_category(request):
     else:
         form = CategoryRegistrationForm()
     return render(request, 'categories.html', {'form': form})
+
+def view_created_categories(request):
+    """Method to view categories
+    """
+    category_object = Categories.objects.all()
+    return render(request, 'home.html', {'category_object': category_object})
+
+
+
+
+

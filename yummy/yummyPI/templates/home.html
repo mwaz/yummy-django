@@ -1,18 +1,55 @@
+
 {% extends 'base.html' %}
 
 
 {% block content %}
 
-{% if user.is_authenticated %}
-<h2> Welcome , {{ user.username }}  </h2>
+<style>
+    table,
+    td,
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
 
-<p> Add a category <a href="/yummyPI/Category"> Here </a> </p>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-<p> <a href="/yummyPI/Logout"> Logout</a> </p>
-{% else %}
-<p> <a href="/yummyPI/Login"> Login </a> </p>
-<p> <a href="/yummyPI//Register"> Signup </a> </p>
-{% endif %}
+    th,
+    td {
+        padding: 15px;
+    }
+</style>
+
+<div class="container">
+    <p> Add a category
+        <a href="/yummyPI/Category"> Here </a>
+    </p>
+    <div class="panel panel-primary">
+        
+        <div class="panel panel-heading"> Categories  </div>
+        
+        <div class="panel panel-body">
+           
+            <table > 
+    
+                 {% for category in category_object %}
+                <tr>
+                    <td>{{ category.category_name }}</td>
+                    <td> <a class="fa fa-pencil" data-toggle="modal" data-target="#modal" title="edit item" data-tooltip> View Recipes</a>
+                    </td>
+                    <td> <a class="fa fa-pencil" data-toggle="modal"  data-target="#modal" title="edit item" data-tooltip> Update</a></td>
+                    <td><a class="fa fa-pencil" data-toggle="modal" data-target="#modal" title="edit item" data-tooltip> Delete</a>
+                    </td>
+                </tr>
+                
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
 
 
 {% endblock %}
