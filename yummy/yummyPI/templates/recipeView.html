@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+    table,
+    td,
+    th {
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+</style>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading"> Recipes
+        </div>
+        <div class="panel-body">
+            <table>
+                 
+                <tr>
+                    <td>Recipe Name</td>
+                    <td>Recipe Ingredients</td>
+                    <td>Recipe Methods</td>
+                </tr>
+                 {% for recipe in recipe_object %}
+                <tr>
+                    
+                    <td>{{recipe.recipe_name}}</td>
+                    <td>{{recipe.recipe_ingredients}}</td>
+                    <td>{{recipe.recipe_methods}}</td>
+
+                     {% endfor %}
+                </tr>
+
+            </table>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
