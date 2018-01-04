@@ -41,14 +41,14 @@ def create_category(request):
     """
     if request.method == 'POST':
         form = CategoryRegistrationForm(request.POST)
-        
+        created_by = request.data.get('created_by')
         if form.is_valid():
             
             catObj = form.cleaned_data
             category_name = catObj['category_name']
             category_description = catObj['category_description']
             if not (Categories.objects.filter(category_name=category_name).exists()):
-                Categories.objects.create(category_name=category_name, category_description=category_description)
+                Categories.objects.create(category_name=category_name, category_description=category_description, created_by=created_by)
 
 
                
@@ -78,12 +78,19 @@ def create_recipe(request):
         existing_recipe = Recipes.objects.filter(recipe_name=recipe_name).exists()
         if not existing_recipe:
             Recipes.objects.create(recipe_name=recipe_name, recipe_methods=recipe_methods, recipe_ingredients=recipe_ingredients)
-            return HttpResponseRedirect('/yummyPI/')
+            return HttpResponseRedirect('/yummyPI/RecipeView')
         else:
             raise forms.ValidationError('I am sorry looks like the recipe name exists')
     else:
         form = RecipeRegistrationForm()
     return render(request, 'recipes.html', {'form': form})
+
+def view_recipes(request):
+    """Method to fetch created recipes
+    """
+    recipe_object = Recipes.objects.all()
+    return render(request, 'recipeView.html', {'recipe_object': recipe_object})
+
 
 
 
