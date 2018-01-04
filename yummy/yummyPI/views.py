@@ -32,6 +32,9 @@ def register(request):
         form = UserRegistrationForm()
         return render(request, 'signup.html', {'form': form})
 
+    # def login(request):
+    #     return HttpResponseRedirect('/yummyPI/')
+
 
 def create_category(request):
     """Method to create a new category
