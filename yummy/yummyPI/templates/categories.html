@@ -9,8 +9,10 @@
         <div class="panel panel-heading"> Create a Category</div>
         <div class="panel panel-body">
             <form method="POST" action="/yummyPI/Category/">
-                {% csrf_token %} {{form }}
-            
+                {% csrf_token %} 
+                    {{form.as_p}}
+                    <input type="hidden" value="{{user.id}}" name="created_by">
+                    <br>
                 <button type="submit" class="btn btn-primary"> create category </button>
             </form>
         </div>
