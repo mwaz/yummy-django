@@ -48,7 +48,8 @@ class CategoryRegistrationForm(forms.Form):
         widget=forms.TextInput(
         attrs={
         'class':'form-control',
-        'placeholder':'category name'
+        'placeholder':'category name',
+        'style': 'color:blue'
         }),
         required=True,
         label='Category Name',
@@ -63,6 +64,13 @@ class CategoryRegistrationForm(forms.Form):
         required=True,
         label='Category Description',
         max_length=256)
+
+    created_by = forms.CharField(widget=forms.TextInput(
+        attrs={
+            'class': 'hidden',
+            'value': '{{user.id}}'
+        }),
+        label = None)
 
     class Meta:
         model = Categories
