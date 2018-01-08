@@ -5,15 +5,17 @@ from django.contrib.auth.models import User
 
 
 class Categories(models.Model):
+    """Class to create Categories
+    """
     category_name = models.CharField(max_length=256)
     category_description = models.CharField(max_length=256)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, default=int)
 
     def __str__(self):
         return self.category_name
 
 class Recipes(models.Model):
-    """class to store recipes
+    """class to create recipes
     """
     recipe_name = models.CharField(max_length=256)
     recipe_ingredients = models.CharField(max_length=256)

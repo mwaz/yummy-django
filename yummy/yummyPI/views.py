@@ -36,19 +36,21 @@ def register(request):
     #     return HttpResponseRedirect('/yummyPI/')
 
 
+@login_required
 def create_category(request):
     """Method to create a new category
     """
     if request.method == 'POST':
         form = CategoryRegistrationForm(request.POST)
-        created_by = request.data.get('created_by')
+        
+        created_by = request.user.id
         if form.is_valid():
             
             catObj = form.cleaned_data
             category_name = catObj['category_name']
             category_description = catObj['category_description']
             if not (Categories.objects.filter(category_name=category_name).exists()):
-                Categories.objects.create(category_name=category_name, category_description=category_description, created_by=created_by)
+                Categories.objects.create(category_name=category_name, category_description=category_description, created_by_id=created_by)
 
 
                
