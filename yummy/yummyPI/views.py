@@ -42,7 +42,6 @@ def create_category(request):
     """
     if request.method == 'POST':
         form = CategoryRegistrationForm(request.POST)
-        
         created_by = request.user.id
         if form.is_valid():
             
@@ -76,10 +75,11 @@ def create_recipe(request):
         recipe_name = recipe_obj['recipe_name']
         recipe_methods = recipe_obj['recipe_methods']
         recipe_ingredients = recipe_obj['recipe_ingredients']
+        category_id = category.id
     
         existing_recipe = Recipes.objects.filter(recipe_name=recipe_name).exists()
         if not existing_recipe:
-            Recipes.objects.create(recipe_name=recipe_name, recipe_methods=recipe_methods, recipe_ingredients=recipe_ingredients)
+            Recipes.objects.create(recipe_name=recipe_name, recipe_methods=recipe_methods, recipe_ingredients=recipe_ingredients, category_id=category_id)
             return HttpResponseRedirect('/yummyPI/RecipeView')
         else:
             raise forms.ValidationError('I am sorry looks like the recipe name exists')
