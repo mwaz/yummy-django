@@ -20,6 +20,7 @@ class Recipes(models.Model):
     recipe_name = models.CharField(max_length=256)
     recipe_ingredients = models.CharField(max_length=256)
     recipe_methods = models.CharField(max_length=256)
+    category_name = models.ForeignKey(Categories, on_delete=models.CASCADE, default=int)
     
     def __str__(self):
         return self.recipe_name

@@ -66,17 +66,19 @@ def view_created_categories(request):
     category_object = Categories.objects.all()
     return render(request, 'home.html', {'category_object': category_object})
 
-def create_recipe(request):
+def create_recipe(request, category_id):
     """Method to create a recipe from a category
     """
     form = RecipeRegistrationForm(request.POST)
     if form.is_valid():
+        request.post.get('')
         recipe_obj = form.cleaned_data
         recipe_name = recipe_obj['recipe_name']
         recipe_methods = recipe_obj['recipe_methods']
         recipe_ingredients = recipe_obj['recipe_ingredients']
-        category_id = category.id
+        category_id = category_id
     
+        categories = Categories.objects.all()
         existing_recipe = Recipes.objects.filter(recipe_name=recipe_name).exists()
         if not existing_recipe:
             Recipes.objects.create(recipe_name=recipe_name, recipe_methods=recipe_methods, recipe_ingredients=recipe_ingredients, category_id=category_id)

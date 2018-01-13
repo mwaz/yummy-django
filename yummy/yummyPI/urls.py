@@ -7,9 +7,9 @@ app_name = 'yummy_recipes'
 urlpatterns = [
     url(r'^$', view_created_categories, name='home'),
     url(r'^Register/$', views.register),
-    url(r'^Category/$', create_category,   name='category'),
+    url(r'^Category$', create_category,   name='category'),
     url(r'^Recipe/$', create_recipe,   name='recipe'),
-    url(r'^RecipeView/$', view_recipes,   name='recipe'),
+    url(r'^Category/<category_id>/RecipeView/$', view_recipes,   name='recipe'),
     url(r'^Login/$', auth_views.login,  {'template_name': 'login.html'}, name='login'),
     url(r'^Logout/$', auth_views.logout, {'template_name': 'logout.html'}, name='logout')
 ]

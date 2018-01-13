@@ -65,13 +65,6 @@ class CategoryRegistrationForm(forms.Form):
         label='Category Description',
         max_length=256)
 
-    created_by = forms.CharField(widget=forms.TextInput(
-        attrs={
-            'class': 'hidden',
-            'value': '{{user.id}}'
-        }),
-        label = None)
-
     class Meta:
         model = Categories
         fields = ('category_name', 'category_description')

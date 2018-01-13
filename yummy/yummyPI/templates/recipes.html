@@ -9,9 +9,10 @@
         <div class="panel-body">
         <form method="POST" action="/yummyPI/Recipe/">
             {% csrf_token %} {{form.as_p }}
-
-        
+            {% for category in categories %}
             <br>
+            <input type="hidden" name="category_id" value="{{category.id}}">
+             {% endfor %}
             <button type="submit" class="btn btn-primary"> create Recipe </button>
         </form>
         </div>
